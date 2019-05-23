@@ -2,31 +2,31 @@
 <html>
   <head>
     <title>Tab Zoom Extension</title>
+    <link rel="stylesheet" href="styles.css"/>
     <style>
-      body {
-        width: 150px;
-        overflow-x: hidden;
-        color: #1f1f1e;
-        background-color: #d8d8d8;
-      }
+
 
       img {
-        margin: 5px;
-        border: 2px solid black;
+        margin: 2px;
+        border-radius: 50%;
         vertical-align: middle;
-        width: 19px;
-        height: 19px;
+        width: 10px;
+        height: 10px;
       }
     </style>
     <script src="popup.js"></script>
   </head>
   <body>
-    <div>
+    <div id="search-box">
         <p>search your tabs!</p>
         <form>
             <input id="search-input" type="text" value=""><br>
             <input id="search-submit" type="submit" value="Search">
         </form>
+    </div>
+    <br>
+    <div id="current-tabs">
+
     </div>
   </body>
 </html>

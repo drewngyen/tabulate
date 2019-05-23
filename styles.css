@@ -1,0 +1,48 @@
+#search-box {
+  /* display: flex; */
+  margin: 0 auto;
+  width: 90%;
+}
+#search-input {
+  width: 90%;
+}
+.url-container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  padding: 2px 2px;
+  text-align: left !important;
+  /* display: none; */
+}
+body {
+  text-align: center;
+  width: 375px;
+  /* height: 250px; */
+  overflow-x: hidden;
+  color: #1f1f1e;
+  background-color: #d8d8d8;
+  }
+#current-tabs {
+  padding: 2px;
+  margin: 1px;
+}
+a:link {
+  color: rgb(36, 37, 36);
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: rgb(26, 17, 18);
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: rgb(100, 88, 88);
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: rgb(44, 44, 43);
+  background-color: transparent;
+  text-decoration: none;
+}

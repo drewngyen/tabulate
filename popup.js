@@ -29,43 +29,67 @@ document.addEventListener("DOMContentLoaded", function() {
 
   chrome.tabs.query({}, function(tabs) {
     console.log("tabs:", tabs);
-
+///
     const objTabs = {};
+    const urlCache = {};
+    const urlMetaCache = {};
 
     for (let obj of tabs) {
       let lowTitle = obj.title;
-      objTabs[obj.id] = lowTitle.toLowerCase();
+      objTabs[obj.id] = [lowTitle.toLowerCase(), obj.url, obj.id];
+      urlCache[obj.id] = [obj.favIconUrl, obj.title, obj.url];
+      urlMetaCache[obj.id] = [obj.selected, obj.highlighted, obj.title];
       // arrayTabs.push(obj["title"]);
     }
 
-    console.log(objTabs);
-    console.log(tabs);
+    // append tabslist to search
+    let tabList = document.getElementById("current-tabs");
+    for (let el in urlCache) {
+        let urlContainer = document.createElement('div');
+        urlContainer.setAttribute("class", "url-container");
+        let favIcon = document.createElement('img');
+        favIcon.setAttribute("class", "fav-icons");
+        favIcon.setAttribute("src", `${urlCache[el][0]}`);
+        // favIcon.innerHTML = ; // should add image to icon
+        urlContainer.appendChild(favIcon);
+        let tabUrl = document.createElement('a');
+        tabUrl.setAttribute("class", "tab-url");
+        tabUrl.setAttribute("href", urlCache[el][2]);
+        tabUrl.innerHTML = urlCache[el][1]; // should add title to
+        urlContainer.appendChild(tabUrl);
+        tabList.appendChild(urlContainer);
+
+    }
+
+    ///
 
     // grab the input
     let searchInput = document.getElementById("search-input");
     let submitButton = document.getElementById("search-submit");
     submitButton.addEventListener("click", function() {
-      alert(
-        `hello search: ${searchInput.value} result is: ${search(
-          searchInput.value,
-          objTabs
-        )}`
-      );
+      if (search(searchInput.value, objTabs) !== false) {
+        const urlAndID = search(searchInput.value, objTabs);
+        console.log(urlAndID);
+        // var current = tabs[0];
+        // chrome.tabs.update(current.id, { pinned: !current.pinned });
+        var newURL = urlAndID[1];
+        chrome.tabs.remove(urlAndID[2]);
+        chrome.tabs.create({ url: urlAndID[1] });
+      }
     });
-    
   });
 });
 
 function search(str, object) {
   for (let el in object) {
     //   alert(object[el]);
-    if (object[el].search(str) !== -1) {
-      alert(el);
-      console.log("object[el]:", object[el]);
-      console.log("true");
-      return true;
+    if (object[el][0].search(str) !== -1) {
+      // alert(el);
+      // console.log("object[el]:", object[el]);
+      // console.log("true");
+      return object[el];
     } else {
-      console.log("false");
+      // console.log("false");
     }
   }
   alert("oh well!");

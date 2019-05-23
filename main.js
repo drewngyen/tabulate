@@ -1,5 +1,4 @@
-
-// pins current tab, and keeps focus. 
+// pins current tab, and keeps focus.
 chrome.commands.onCommand.addListener(function(command) {
   if (command == "toggle-pin") {
     // Get the currently selected tab
@@ -16,23 +15,39 @@ chrome.commands.onCommand.addListener(function(command) {
 
 // assigns query( assigns first arg to empty obj, second to callback)
 chrome.tabs.query({}, function(tabs) {
-    // in cb declare new obj 
+  // in cb declare new obj
   const objTabs = {};
+  const urlCache = {};
+  const urlMetaCache = {};
   // loop through obj
   for (let obj of tabs) {
     let lowTitle = obj.title;
     objTabs[obj.id] = lowTitle.toLowerCase();
-
+    urlCache[obj.id] = [obj.favIconUrl, obj.title, obj.url];
+    urlMetaCache[obj.id] = [obj.selected, obj.highlighted, obj.title];
+    // arrayTabs.push(obj["title"]);
   }
-  console.log('begin our loop test');
+
+  console.log("begin our loop test");
   for (let el in objTabs) {
-      console.log(objTabs[el]);
+    console.log(objTabs[el]);
   }
 
-  
-//   console.log("tabs:", tabs);
-  console.log(objTabs);
-//   console.log(tabs);
+  // start looping and printing elemens in array
+//   for (let el in urlCache) {
+//     console.log();
+//     console.log(urlCache[el][2]);
+//     // for (let item in el) {
+//     //     console.log(item);
+//     //   console.log(item[0]); // should add image to icon
+//     //   console.log(item[1]); // should add image to icon
+//     // }
+//   }
+  //   console.log("tabs:", objTabs);
+  console.log("urlCache:", urlCache);
+  //   console.log("urlMetaCache:", urlMetaCache);
+  //   console.log(objTabs);
+  //   console.log(tabs);
 });
 
 // chrome.windows.getCurrent(function(w) {
