@@ -4,7 +4,12 @@
   width: 90%;
 }
 #search-input {
-  width: 90%;
+  width: 80%;
+  margin-right: 6px;
+}
+#header-text {
+  color: rgb(222, 228, 222);
+  font-weight: 600;
 }
 .url-container {
   display: flex;
@@ -20,29 +25,29 @@ body {
   /* height: 250px; */
   overflow-x: hidden;
   color: #1f1f1e;
-  background-color: #d8d8d8;
+  background-color: #1b1717;
   }
 #current-tabs {
   padding: 2px;
   margin: 1px;
 }
 a:link {
-  color: rgb(36, 37, 36);
+  color: rgb(222, 228, 222);
   background-color: transparent;
   text-decoration: none;
 }
 a:visited {
-  color: rgb(26, 17, 18);
+  color: rgb(222, 228, 222);
   background-color: transparent;
   text-decoration: none;
 }
 a:hover {
-  color: rgb(100, 88, 88);
+  color: rgb(189, 186, 186);
   background-color: transparent;
   text-decoration: none;
 }
 a:active {
-  color: rgb(44, 44, 43);
+  color: rgb(222, 228, 222);
   background-color: transparent;
   text-decoration: none;
 }
@@ -56,4 +61,7 @@ a:active {
   position: relative;
   top: .55em;
   margin: 0.7em;
+}
+#form-search {
+  display: flex;
 }

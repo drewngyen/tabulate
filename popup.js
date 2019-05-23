@@ -34,15 +34,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const urlCache = {};
     const urlMetaCache = {};
 
+    // cache all tab data
     for (let obj of tabs) {
       let lowTitle = obj.title;
+      // creates object containing tabID and tab title
       objTabs[obj.id] = [lowTitle.toLowerCase(), obj.url, obj.id];
+      // create object that holds colors 
       urlCache[obj.id] = [obj.favIconUrl, obj.title, obj.url];
       urlMetaCache[obj.id] = [obj.selected, obj.highlighted, obj.title];
       // arrayTabs.push(obj["title"]);
     }
 
-    // append tabslist to search
+    // dynamically append tabslist to search popup.html
     let tabList = document.getElementById("current-tabs");
     for (let el in urlCache) {
         let urlContainer = document.createElement('div');
@@ -62,6 +65,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     ///
+        // ADD SHORTCUT FOR SEARCH.
+        // ADDD MORE STYLES
+
+        // FILTER BY SEARCH
+
+        // remove cache
 
     // grab the input
     let searchInput = document.getElementById("search-input");
