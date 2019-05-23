@@ -1,6 +1,21 @@
 {
-    "name": "chrome-extension-hackathon",
-    "version": "1.0",
-    "description": "tab-search",
+    "name": "Esther and Drew's extensiono",
+    "version": "0.3",
+    "description": "Creates a keyboard shortcut (Alt + O), (Option + O) on Mac to toggle the pinned state of the currently selected tab",
+    "background": {
+      "persistent": false,
+      "scripts": ["main.js"]
+    },
+    "permissions": [
+        "tabs"
+    ],
+
+    "commands": {
+      "toggle-pin": {
+        "suggested_key": { "default": "Alt+O" },
+        "description": "Toggle tab pin"
+      }
+    },
     "manifest_version": 2
   }
+  

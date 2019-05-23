@@ -1,0 +1,28 @@
+// {
+//     "name": "chrome-extension-hackathon",
+//     "permissions": [
+//         "contextMenus",
+//         "storage",
+//         "tabs",
+//         "history",
+//         "identity",
+//         "notifications"
+//       ],
+//     "version": "1.0",
+//     "description": "tab-search",
+//     "manifest_version": 2,
+//     "commands": {
+//         "toggle-pin": {
+//           "suggested_key": { "default": "Alt+Shift+P" },
+//           "description": "Toggle tab pin"
+//         }
+//       },
+//     "background": {
+//         "scripts": ["main.js"],
+//         "persistent": false
+//       },
+    
+//       "browser_action": {
+//         "default_title": "Zoom Extension Demo"
+//       }
+//   }
