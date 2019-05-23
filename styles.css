@@ -46,3 +46,14 @@ a:active {
   background-color: transparent;
   text-decoration: none;
 }
+.break {
+  flex-grow: 1;
+  flex-shrink: 1;
+  background-color: #263b36;
+  height: 2px;
+  width: 40%;
+  display: flex;
+  position: relative;
+  top: .55em;
+  margin: 0.7em;
+}
