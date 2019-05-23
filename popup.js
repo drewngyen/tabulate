@@ -89,13 +89,18 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+function filterSearch() {
+    let input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('search-input');
+    filter = input.value.toLowerCase();
+    ul = document.getElementsByClassName('tab-url');
+}
+
+// searches for string and returns bool
 function search(str, object) {
   for (let el in object) {
     //   alert(object[el]);
     if (object[el][0].search(str) !== -1) {
-      // alert(el);
-      // console.log("object[el]:", object[el]);
-      // console.log("true");
       return object[el];
     } else {
       // console.log("false");

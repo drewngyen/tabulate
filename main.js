@@ -10,7 +10,19 @@ chrome.commands.onCommand.addListener(function(command) {
       var current = tabs[0];
       chrome.tabs.update(current.id, { pinned: !current.pinned });
     });
+  } else if (command == "toggle-browser-action") {
+
   }
+});
+
+chrome.browserAction.onClicked.addListener(function() {
+    var w = 440;
+    var h = 220;
+    var left = (screen.width/2)-(w/2);
+    var top = (screen.height/2)-(h/2); 
+
+    chrome.windows.create({'url': 'redirect.html', 'type': 'popup', 'width': w, 'height': h, 'left': left, 'top': top} , function(window) {
+    });
 });
 
 // assigns query( assigns first arg to empty obj, second to callback)
@@ -32,30 +44,12 @@ chrome.tabs.query({}, function(tabs) {
   for (let el in objTabs) {
     console.log(objTabs[el]);
   }
-
-  // start looping and printing elemens in array
-//   for (let el in urlCache) {
-//     console.log();
-//     console.log(urlCache[el][2]);
-//     // for (let item in el) {
-//     //     console.log(item);
-//     //   console.log(item[0]); // should add image to icon
-//     //   console.log(item[1]); // should add image to icon
-//     // }
-//   }
-  //   console.log("tabs:", objTabs);
   console.log("urlCache:", urlCache);
   //   console.log("urlMetaCache:", urlMetaCache);
   //   console.log(objTabs);
   //   console.log(tabs);
 });
 
-// chrome.windows.getCurrent(function(w) {
-//     chrome.tabs.getSelected(w.id,
-//     function (response){
-//         console.log(response.url);
-//     });
-// });
 
 function doInCurrentTab(tabCallback) {
   chrome.tabs.query(
@@ -71,11 +65,3 @@ function doInCurrentTab(tabCallback) {
   );
 }
 
-//   chrome.tabs.onCreated.addListener(function( Tab tab)) {
-//     console.log("tab:", tab)
-// }
-
-// fucntion to change focus of window
-// function changeFocus(windowId, updateInfo) {
-//     chrome.windows.update(integer windowId, object updateInfo);
-// }

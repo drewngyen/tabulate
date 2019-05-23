@@ -1,8 +1,9 @@
 <!doctype html>
 <html>
   <head>
-    <title>Tab Zoom Extension</title>
+    <title>Tabulate</title>
     <link rel="stylesheet" href="styles.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Yanone+Kaffeesatz&display=swap" rel="stylesheet">
     <style>
 
 
@@ -17,11 +18,12 @@
     <script src="popup.js"></script>
   </head>
   <body>
+      <h3>tabulate</h3>
+    <p id="header-text">search and open your tabs!</p>
     <div id="search-box">
-        <p id="header-text">search your tabs!</p>
-        <form id="form-search">
-            <input id="search-input" type="text" value=""><br>
-            <input id="search-submit" type="submit" value="Search">
+        <form autocomplete="off" id="form-search">
+            <input id="search-input" type="text" placeholder=" search" autofocus><br>
+            <input id="search-submit" type="submit" value="Open Tab">
             <!-- <div class="break"></div> -->
         </form>
     </div>
