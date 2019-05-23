@@ -1,12 +1,66 @@
+
+// pins current tab, and keeps focus. 
 chrome.commands.onCommand.addListener(function(command) {
-    if (command == "toggle-pin") {
-      // Get the currently selected tab
-      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        // Toggle the pinned status
-        var current = tabs[0];
-        // window.alert("tabs: ", tabs);
-        chrome.tabs.update(current.id, {'pinned': !current.pinned});
+  if (command == "toggle-pin") {
+    // Get the currently selected tab
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+      // Toggle the pinned status
+      chrome.tabs.getSelected(null, function(tab) {
+        console.log(tab);
       });
-    }
-  });
+      var current = tabs[0];
+      chrome.tabs.update(current.id, { pinned: !current.pinned });
+    });
+  }
+});
+
+// assigns query( assigns first arg to empty obj, second to callback)
+chrome.tabs.query({}, function(tabs) {
+    // in cb declare new obj 
+  const objTabs = {};
+  // loop through obj
+  for (let obj of tabs) {
+    let lowTitle = obj.title;
+    objTabs[obj.id] = lowTitle.toLowerCase();
+
+  }
+  console.log('begin our loop test');
+  for (let el in objTabs) {
+      console.log(objTabs[el]);
+  }
+
   
+//   console.log("tabs:", tabs);
+  console.log(objTabs);
+//   console.log(tabs);
+});
+
+// chrome.windows.getCurrent(function(w) {
+//     chrome.tabs.getSelected(w.id,
+//     function (response){
+//         console.log(response.url);
+//     });
+// });
+
+function doInCurrentTab(tabCallback) {
+  chrome.tabs.query(
+    // execute code only in current window if properties are true below
+    { currentWindow: true, active: true },
+    function(tabArray) {
+      // added here
+      var updateProperties = { active: true };
+      chrome.tabs.update(tabId, updateProperties, tab => {});
+
+      tabCallback(tabArray[0]);
+    }
+  );
+}
+
+//   chrome.tabs.onCreated.addListener(function( Tab tab)) {
+//     console.log("tab:", tab)
+// }
+
+// fucntion to change focus of window
+// function changeFocus(windowId, updateInfo) {
+//     chrome.windows.update(integer windowId, object updateInfo);
+// }
