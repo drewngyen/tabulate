@@ -1,0 +1,6 @@
+{
+    "name": "chrome-extension-hackathon",
+    "version": "1.0",
+    "description": "tab-search",
+    "manifest_version": 2
+  }
