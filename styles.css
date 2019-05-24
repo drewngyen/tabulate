@@ -35,15 +35,14 @@ body {
   overflow-x: hidden;
   color: #1f1f1e;
   background-color: #343335;
-  
-  }
-  h3{
-    font-family: 'Yanone Kaffeesatz', sans-serif;
-    font-weight: 300px;
-    font-size: 30px;
-    color: whitesmoke;
-    margin: 0px;
-  }
+}
+h3 {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-weight: 300px;
+  font-size: 30px;
+  color: whitesmoke;
+  margin: 0px;
+}
 #current-tabs {
   padding: 2px;
   margin: 1px;
@@ -76,22 +75,26 @@ a:active {
   width: 40%;
   display: flex;
   position: relative;
-  top: .55em;
+  top: 0.55em;
   margin: 0.7em;
 }
 #form-search {
   display: flex;
 }
-input[type=submit] {padding:5px 15px; background:rgb(7, 11, 46); border:0 none;
-  cursor:pointer;
-  font-family: 'Roboto', sans-serif;
+input[type="submit"] {
+  padding: 5px 15px;
+  background: rgb(7, 11, 46);
+  border: 0 none;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
   font-size: 12px;
   /* font: bold; */
   font-weight: 800;
   color: white;
 
   -webkit-border-radius: 5px;
-  border-radius: 0px 5px 5px 0px; }
+  border-radius: 0px 5px 5px 0px;
+}
 
 /* Scroll bar CSS styles */
 ::-webkit-scrollbar {
@@ -100,18 +103,18 @@ input[type=submit] {padding:5px 15px; background:rgb(7, 11, 46); border:0 none;
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background:rgb(35, 38, 51); 
-  border-radius: 2px; 
+  background: rgb(35, 38, 51);
+  border-radius: 2px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background:  #c8c7c9;
+  background: #c8c7c9;
   border-radius: 2px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(206, 182, 47); 
+  background: rgb(206, 182, 47);
   width: 6px;
 }

@@ -11,7 +11,6 @@ chrome.commands.onCommand.addListener(function(command) {
       chrome.tabs.update(current.id, { pinned: !current.pinned });
     });
   } else if (command == "toggle-browser-action") {
-    
   }
 });
 
@@ -40,7 +39,6 @@ chrome.tabs.query({}, function(tabs) {
   //   console.log(tabs);
 });
 
-
 function doInCurrentTab(tabCallback) {
   chrome.tabs.query(
     // execute code only in current window if properties are true below
@@ -54,4 +52,3 @@ function doInCurrentTab(tabCallback) {
     }
   );
 }
-
