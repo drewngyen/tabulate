@@ -17,9 +17,14 @@
       }
     </style>
     <script src="popup.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
   <body>
-    <h3>tabulate</h3>
+    <div id="header-content">
+      <button type="button" class="head-btn" id="reduce-submit"><i class="fas fa-skull"></i></button>
+      <h3>tabulate</h3>
+      <button type="button" class="head-btn" id="undo-submit"><i class="fas fa-undo-alt"></i></button>
+    </div>
     <p id="header-text">search and open your tabs!</p>
     <div id="search-box">
       <form autocomplete="off" id="form-search">
@@ -32,8 +37,6 @@
         <input id="search-submit" type="submit" value="Open Tab" />
         <!-- <div class="break"></div> -->
       </form>
-      <button type="button" id="reduce-submit">Delete Tabs</button>
-      <button type="button" id="undo-submit">Undo Delete</button>
     </div>
     <br />
     <div id="current-tabs"></div>

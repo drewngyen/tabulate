@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let searchInput = document.getElementById("search-input");
     let submitButton = document.getElementById("search-submit");
     submitButton.addEventListener("click", function() {
-      if (search(searchInput.value, objTabs) !== false) {
+      if (search(searchInput.value.toLowerCase(), objTabs) !== false) {
         const urlAndID = search(searchInput.value, objTabs);
         console.log(urlAndID);
         // var current = tabs[0];
