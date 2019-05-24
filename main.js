@@ -1,6 +1,3 @@
-chrome.runtime.onInstalled.addListener(function() {
-    console.log("tabulate is running!");
-  });
 // pins current tab, and keeps focus.
 chrome.commands.onCommand.addListener(function(command) {
   if (command == "toggle-pin") {
@@ -13,6 +10,7 @@ chrome.commands.onCommand.addListener(function(command) {
       var current = tabs[0];
       chrome.tabs.update(current.id, { pinned: !current.pinned });
     });
+  } else if (command == "toggle-browser-action") {
   }
 });
 
@@ -30,7 +28,7 @@ chrome.tabs.query({}, function(tabs) {
     urlMetaCache[obj.id] = [obj.selected, obj.highlighted, obj.title];
     // arrayTabs.push(obj["title"]);
   }
-  // test to print out tab objs in objTabs
+
   console.log("begin our loop test");
   for (let el in objTabs) {
     console.log(objTabs[el]);
@@ -40,7 +38,6 @@ chrome.tabs.query({}, function(tabs) {
   //   console.log(objTabs);
   //   console.log(tabs);
 });
-
 
 function doInCurrentTab(tabCallback) {
   chrome.tabs.query(
@@ -55,4 +52,3 @@ function doInCurrentTab(tabCallback) {
     }
   );
 }
-

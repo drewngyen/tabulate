@@ -1,12 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Tabulate</title>
-    <link rel="stylesheet" href="styles.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto|Yanone+Kaffeesatz&display=swap"
+      rel="stylesheet"
+    />
     <style>
-
-
       img {
         margin: 2px;
         border-radius: 50%;
@@ -18,19 +19,23 @@
     <script src="popup.js"></script>
   </head>
   <body>
-      <h3>tabulate</h3>
+    <h3>tabulate</h3>
     <p id="header-text">search and open your tabs!</p>
     <div id="search-box">
-        <form autocomplete="off" id="form-search">
-            <input id="search-input" type="text" placeholder=" search" autofocus><br>
-            <input id="search-submit" type="submit" value="Open Tab">
-            <!-- <div class="break"></div> -->
-        </form>
+      <form autocomplete="off" id="form-search">
+        <input
+          id="search-input"
+          type="text"
+          placeholder=" search"
+          autofocus
+        /><br />
+        <input id="search-submit" type="submit" value="Open Tab" />
+        <!-- <div class="break"></div> -->
+      </form>
+      <button type="button" id="reduce-submit">Delete Tabs</button>
+      <button type="button" id="undo-submit">Undo Delete</button>
     </div>
-    <br>
-    <div id="current-tabs">
-
-    </div>
+    <br />
+    <div id="current-tabs"></div>
   </body>
 </html>
-

@@ -6,11 +6,13 @@ document.addEventListener("DOMContentLoaded", function() {
   chrome.tabs.query({ active: true }, function(tabs) {
     if (tabs.length > 1)
       console.log(
-        "tabulate old chrome boilerplate"
+        "[ZoomDemoExtension] Query unexpectedly returned more than 1 tab."
       );
     tabId = tabs[0].id;
+
+    // document.getElementById('search-submit').onclick = doZoomOut;
   });
-  // boiler plate functionality
+
   chrome.commands.onCommand.addListener(function(command) {
     if (command == "toggle-pin") {
       // Get the currently selected tab
@@ -27,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   chrome.tabs.query({}, function(tabs) {
     console.log("tabs:", tabs);
-/// cache data 
+    ///
     const objTabs = {};
     const urlCache = {};
     const urlMetaCache = {};
@@ -36,10 +38,9 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let obj of tabs) {
       let lowTitle = obj.title;
       // creates object containing tabID and tab title
-      objTabs[obj.id] = [lowTitle.toLowerCase(), obj.url, obj.id];
-      // create object that holds colors 
+      objTabs[obj.id] = [lowTitle.toLowerCase(), obj.url, obj.id, obj.windowId];
+      // create object that holds colors
       urlCache[obj.id] = [obj.favIconUrl, obj.title, obj.url];
-      // create object of meta data properties of obj
       urlMetaCache[obj.id] = [obj.selected, obj.highlighted, obj.title];
       // arrayTabs.push(obj["title"]);
     }
@@ -47,54 +48,97 @@ document.addEventListener("DOMContentLoaded", function() {
     // dynamically append tabslist to search popup.html
     let tabList = document.getElementById("current-tabs");
     for (let el in urlCache) {
-        // creates a new url link in tablist in popup html
-        let urlContainer = document.createElement('div');
-        urlContainer.setAttribute("class", "url-container");
-
-        // adds an icon of url tab to url container 
-        let favIcon = document.createElement('img');
-        favIcon.setAttribute("class", "fav-icons");
-        favIcon.setAttribute("src", `${urlCache[el][0]}`);
-        urlContainer.appendChild(favIcon);
-
-        // adds url to each title link
-        let tabUrl = document.createElement('a');
-        tabUrl.setAttribute("class", "tab-url");
-        tabUrl.setAttribute("href", urlCache[el][2]);
-        tabUrl.innerHTML = urlCache[el][1]; // should add title to
-        urlContainer.appendChild(tabUrl);
-        tabList.appendChild(urlContainer);
-
+      let urlContainer = document.createElement("div");
+      urlContainer.setAttribute("class", "url-container");
+      let favIcon = document.createElement("img");
+      favIcon.setAttribute("class", "fav-icons");
+      favIcon.setAttribute("src", `${urlCache[el][0]}`);
+      // favIcon.innerHTML = ; // should add image to icon
+      urlContainer.appendChild(favIcon);
+      let tabUrl = document.createElement("a");
+      tabUrl.setAttribute("class", "tab-url");
+      tabUrl.setAttribute("href", urlCache[el][2]);
+      tabUrl.innerHTML = urlCache[el][1]; // should add title to
+      urlContainer.appendChild(tabUrl);
+      tabList.appendChild(urlContainer);
     }
 
-    /// TO-DO
-        // [x] ADD SHORTCUT FOR SEARCH.
-        // [x] ADDD MORE STYLES
+    ///
+    // ADD SHORTCUT FOR SEARCH.
+    // ADDD MORE STYLES
 
-        // [ ] FILTER BY SEARCH
+    // Local storage, iterate all elements into storage
 
-        // [x] remove cache
+    // remove cache
 
-    // grab the reference to search input
+    // grab the input
     let searchInput = document.getElementById("search-input");
     let submitButton = document.getElementById("search-submit");
     submitButton.addEventListener("click", function() {
       if (search(searchInput.value, objTabs) !== false) {
         const urlAndID = search(searchInput.value, objTabs);
         console.log(urlAndID);
-        // var newURL = urlAndID[1];
+        // var current = tabs[0];
+        // chrome.tabs.update(current.id, { pinned: !current.pinned });
+        var newURL = urlAndID[1];
         chrome.tabs.remove(urlAndID[2]);
         chrome.tabs.create({ url: urlAndID[1] });
       }
+    });
+
+    // reduce tabs
+    const copy = { ...objTabs };
+    let reduceArr = []; // grabs properties of open tabs
+    let cacheURL = []; // cache all URLs only
+    for (let el in copy) {
+      reduceArr.push(copy[el][2]);
+
+      // cacheURL.push(copy[el][1]);
+    }
+    console.log("this cacheUrl:", cacheURL);
+    reduceArr = reduceArr.slice(1);
+    // test element
+    // saveStorage("test1", "value1");
+    let reduceButton = document.getElementById("reduce-submit");
+    reduceButton.addEventListener("click", function() {
+      for (let url in urlCache) {
+        saveStorage(url, urlCache[url][2]);
+      }
+      chrome.tabs.remove(reduceArr);
+    });
+    console.log("res", cacheURL);
+    //undo reduce
+    // console.log("cacheURl in loop ", cacheURL);
+    let undoButton = document.getElementById("undo-submit");
+    let storage = localStorage;
+    console.log("storage: ", storage);
+    undoButton.addEventListener("click", function() {
+      console.log("urclCache ", urlCache);
+      // logic for storage here
+      let localStorageKeys = []; // grabs list of keys
+      for (let i = 0; i < localStorage.length; i++) {
+        localStorageKeys.push(localStorage.key(i));
+      }
+      console.log("storage keys: ", localStorageKeys);
+      for (let value of localStorageKeys) {
+        let url = getStorage(value); // value = key, getStorage retrives value from key(value)
+        console.log("reduce test: ", url);
+        // window.open(ele, "_blank");
+        chrome.tabs.create({ url: url });
+        // removes key elements test
+        removeItem(value);
+        localStorageKeys = [];
+      }
+      // window.localStorage.clear();
     });
   });
 });
 
 function filterSearch() {
-    let input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById('search-input');
-    filter = input.value.toLowerCase();
-    ul = document.getElementsByClassName('tab-url');
+  let input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("search-input");
+  filter = input.value.toLowerCase();
+  ul = document.getElementsByClassName("tab-url");
 }
 
 // searches for string and returns bool
@@ -107,6 +151,17 @@ function search(str, object) {
       // console.log("false");
     }
   }
-  alert("Sorry, tab not found! :sad:");
+  alert("oh well!");
   return false;
+}
+function saveStorage(key, value) {
+  localStorage.setItem(key, value);
+}
+
+function getStorage(key) {
+  return localStorage.getItem(key);
+}
+function removeItem(key) {
+  localStorage.removeItem(key);
+  console.log(`${key} deleted!!`);
 }
