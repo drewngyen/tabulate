@@ -1,7 +1,7 @@
 {
   "name": "tabulate",
-  "version": "0.3",
-  "description": "Creates a keyboard shortcut (Alt + O), (Option + O) on Mac to toggle the pinned state of the currently selected tab",
+  "version": "0.1",
+  "description": "Your personal tab manager. Press OPTION-O to get started! Search and organize your open tabs.",
   "background": {
     "persistent": false,
     "scripts": ["main.js"]
@@ -23,6 +23,9 @@
     "default_icon": "tabulate128.png",
     "default_title": "test popup",
     "default_popup": "popup.html"
+  },
+  "icons" : {
+    "128" : "tabulate128.png"
   },
   "manifest_version": 2
 }
