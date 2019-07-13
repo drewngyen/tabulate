@@ -1,5 +1,5 @@
 # tabulate
-codesmith cohort 29 hackathon extension 
+Chrome tab management
 # tabulate features:
 * option-O hotkey will initiate browser action 
 * lets you view open tabs in a list
