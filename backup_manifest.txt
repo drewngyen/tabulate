@@ -1,5 +1,5 @@
 // {
-//     "name": "chrome-extension-hackathon",
+//     "name": "tabulate",
 //     "permissions": [
 //         "contextMenus",
 //         "storage",
@@ -23,6 +23,6 @@
 //       },
     
 //       "browser_action": {
-//         "default_title": "Zoom Extension Demo"
+//         "default_title": "tabulate"
 //       }
 //   }
