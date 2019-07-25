@@ -11,7 +11,7 @@ This extension is built with vanilla javascript and extensively uses the chrome 
 ### Screenshots
 #### Searching for a tab in cluttered window
 ![search](https://github.com/drewngyen/tabulate/blob/master/assets/tabulate-ui-2.gif?raw=true)
-Tabulate will open the page you are searching for and close the original one
+#### Tabulate will open the page you are searching for and close the original one
 ![reopen](https://github.com/drewngyen/tabulate/blob/master/assets/tabulate-ui.gif?raw=true)
 #### Tabulate can close all open tabs except the active tab
 ![close](https://github.com/drewngyen/tabulate/blob/master/assets/close.gif?raw=true)
